@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 function Layout({ children }) {
     return (react_1.default.createElement("html", null,
+        react_1.default.createElement("link", { rel: "stylesheet", href: "globals.css" }),
         react_1.default.createElement("body", null,
             react_1.default.createElement("h1", null, "Test"),
             children)));

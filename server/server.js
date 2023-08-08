@@ -14,7 +14,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const fileRouter_1 = __importDefault(require("./fileRouter"));
+const path_1 = __importDefault(require("path"));
+const process_1 = require("process");
 const app = (0, express_1.default)();
+const publicDir = path_1.default.join((0, process_1.cwd)(), 'public');
+app.use(express_1.default.static(publicDir));
 app.get('/*', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     return yield (0, fileRouter_1.default)(req, res, next);
 }));
