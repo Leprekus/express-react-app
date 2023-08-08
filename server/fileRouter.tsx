@@ -6,6 +6,7 @@ import path from 'path'
 import { renderToPipeableStream, renderToString } from 'react-dom/server';
 import fs from 'fs'
 import { cwd } from 'process';
+import NotFound from './NotFound';
 export default async function fileRouter(req: express.Request, res: express.Response, next: express.NextFunction) {
     const CWD = cwd()
     const pathname = req.path
@@ -15,7 +16,7 @@ export default async function fileRouter(req: express.Request, res: express.Resp
     const dirExists = fs.existsSync(childrenPath)
     
     if(!dirExists) {
-        const App = renderToPipeableStream(<Layout>404 not found</Layout>)
+        const App = renderToPipeableStream(<NotFound/>)
         return App.pipe(res)
     }
 

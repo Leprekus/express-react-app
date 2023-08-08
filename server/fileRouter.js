@@ -41,6 +41,7 @@ const path_1 = __importDefault(require("path"));
 const server_1 = require("react-dom/server");
 const fs_1 = __importDefault(require("fs"));
 const process_1 = require("process");
+const NotFound_1 = __importDefault(require("./NotFound"));
 function fileRouter(req, res, next) {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
@@ -49,7 +50,7 @@ function fileRouter(req, res, next) {
         const childrenPath = path_1.default.join(CWD, 'app', pathname, 'page.js').toString();
         const dirExists = fs_1.default.existsSync(childrenPath);
         if (!dirExists) {
-            const App = (0, server_1.renderToPipeableStream)(react_1.default.createElement(layout_1.default, null, "404 not found"));
+            const App = (0, server_1.renderToPipeableStream)(react_1.default.createElement(NotFound_1.default, null));
             return App.pipe(res);
         }
         try {
