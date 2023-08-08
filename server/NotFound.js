@@ -17,10 +17,9 @@ function NotFound() {
     return (react_1.default.createElement("html", null,
         react_1.default.createElement("link", { rel: "stylesheet", href: "global.css" }),
         react_1.default.createElement("link", { rel: "stylesheet", href: "output.css" }),
-        react_1.default.createElement("body", null,
-            react_1.default.createElement("div", { style: divStyle },
-                react_1.default.createElement("h2", { style: { fontSize: '3rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem' } },
-                    "404 | ",
-                    react_1.default.createElement("span", { style: { fontSize: '1rem' } }, "Not found"))))));
+        react_1.default.createElement("body", { style: divStyle },
+            react_1.default.createElement("h2", { style: { fontSize: '3rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem', fontFamily: 'sans-serif' } },
+                "404 | ",
+                react_1.default.createElement("span", { style: { fontSize: '1rem' } }, "Not found")))));
 }
 exports.default = NotFound;

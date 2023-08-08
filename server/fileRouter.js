@@ -47,15 +47,18 @@ function fileRouter(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const CWD = (0, process_1.cwd)();
         const pathname = req.path;
-        const childrenPath = path_1.default.join(CWD, 'app', pathname, 'page.js').toString();
+        const childrenPath = path_1.default.join(CWD, 'app', pathname, 'page.js');
         const dirExists = fs_1.default.existsSync(childrenPath);
+        console.log({ childrenPath, pathname });
         if (!dirExists) {
+            console.log({ dirExists, childrenPath });
             const App = (0, server_1.renderToPipeableStream)(react_1.default.createElement(NotFound_1.default, null));
             return App.pipe(res);
         }
         try {
-            const Children = yield Promise.resolve(`${childrenPath}`).then(s => __importStar(require(s)));
-            const App = (0, server_1.renderToPipeableStream)(react_1.default.createElement(layout_1.default, null, react_1.default.createElement((_a = Children.default) !== null && _a !== void 0 ? _a : Children.page)));
+            const Component = yield Promise.resolve(`${childrenPath}`).then(s => __importStar(require(s)));
+            const Child = react_1.default.createElement((_a = Component.default) !== null && _a !== void 0 ? _a : Component.page, null);
+            const App = (0, server_1.renderToPipeableStream)(react_1.default.createElement(layout_1.default, null, Child));
             App.pipe(res);
         }
         catch (error) {

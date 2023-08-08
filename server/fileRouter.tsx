@@ -10,19 +10,22 @@ import NotFound from './NotFound';
 export default async function fileRouter(req: express.Request, res: express.Response, next: express.NextFunction) {
     const CWD = cwd()
     const pathname = req.path
-    const childrenPath = path.join(CWD, 'app',pathname, 'page.js').toString()
+    const childrenPath = path.join(CWD, 'app',pathname, 'page.js')
 
 
     const dirExists = fs.existsSync(childrenPath)
     
+    console.log({ childrenPath, pathname })
     if(!dirExists) {
+        console.log({ dirExists, childrenPath })
         const App = renderToPipeableStream(<NotFound/>)
         return App.pipe(res)
     }
 
     try {
-        const Children = await import (childrenPath)
-        const App = renderToPipeableStream(React.createElement(Layout, null, React.createElement(Children.default ?? Children.page)));
+        const Component = await import (childrenPath)
+        const Child = React.createElement(Component.default ?? Component.page, null)
+        const App = renderToPipeableStream(React.createElement(Layout, null, Child));
         App.pipe(res);
         
 

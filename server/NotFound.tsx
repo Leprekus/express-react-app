@@ -16,11 +16,10 @@ export default function NotFound() {
     <html>
         <link rel="stylesheet" href="global.css" />
         <link rel="stylesheet" href="output.css" />
-        <body>
-            <div style={divStyle}>
+        <body style={divStyle}>
                 
-                <h2 style={{ fontSize: '3rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem'}}>404 | <span style={{ fontSize: '1rem' }}>Not found</span></h2>
-            </div>
+            <h2 style={{ fontSize: '3rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1rem', fontFamily: 'sans-serif'}}>404 | <span style={{ fontSize: '1rem' }}>Not found</span></h2>
+            
         </body>
     </html>
   )
